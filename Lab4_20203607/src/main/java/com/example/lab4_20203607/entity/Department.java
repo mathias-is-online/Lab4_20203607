@@ -20,7 +20,7 @@ public class Department {
     private String department_name;
 
     @Column(name = "manager_id", nullable = false)
-    private Integer manager_id;
+    private int manager_id;
 
     @Column(name = "location_id", nullable = false)
     private String location_id;

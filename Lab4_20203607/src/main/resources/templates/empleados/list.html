@@ -69,10 +69,7 @@
                     th:text="${job.job_title}" th:value="${job.job_id}"
                     th:selected="${job.job_id == empleados.job_id}"></td>
 
-                <td th:each="departments: ${listadepartamentos}"
-                th:text="${departments.department_name}" th:value="${departments.department_id}"
-                th:selected="${empleados.department_id == departments.department_id}"></td>
-
+                <td> City</td>
                 <td> City</td>
 
                 <td th:text="${empleados.phone_number}"></td>
