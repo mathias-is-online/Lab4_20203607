@@ -46,6 +46,9 @@ public class EmpleadosController {
         List<Jobs> listajobs = jobsRepository.findAll();
         model.addAttribute("listajobs", listajobs);
 
+        List<Department> listadepartamentos = departmentRepository.findAll();
+        model.addAttribute("listadepartamentos", listadepartamentos);
+
         return "empleados/list";
     }
 
