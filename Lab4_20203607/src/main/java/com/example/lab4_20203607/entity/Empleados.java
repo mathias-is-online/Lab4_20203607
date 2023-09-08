@@ -53,7 +53,7 @@ public class Empleados {
     private Double commission_pct;
 
     @Column(name = "manager_id", nullable = false)
-    private int manager_id;
+    private Integer manager_id;
 
     @Column(name = "department_id", nullable = false)
     private int department_id;

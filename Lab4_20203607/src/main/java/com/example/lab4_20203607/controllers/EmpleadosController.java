@@ -1,7 +1,13 @@
 package com.example.lab4_20203607.controllers;
 
+import com.example.lab4_20203607.entity.Department;
 import com.example.lab4_20203607.entity.Empleados;
+import com.example.lab4_20203607.entity.Jobs;
+import com.example.lab4_20203607.entity.Locations;
+import com.example.lab4_20203607.repositories.DepartmentRepository;
 import com.example.lab4_20203607.repositories.EmpleadosRepository;
+import com.example.lab4_20203607.repositories.JobsRepository;
+import com.example.lab4_20203607.repositories.LocationsRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,9 +22,15 @@ public class EmpleadosController {
 
 
     final EmpleadosRepository empleadosRepository;
+    final JobsRepository jobsRepository;
+    final DepartmentRepository departmentRepository;
+    final LocationsRepository locationsRepository;
 
-    public EmpleadosController(EmpleadosRepository empleadosRepository) {
+    public EmpleadosController(EmpleadosRepository empleadosRepository,JobsRepository jobsRepository,DepartmentRepository departmentRepository, LocationsRepository locationsRepository) {
         this.empleadosRepository = empleadosRepository;
+        this.jobsRepository = jobsRepository;
+        this.departmentRepository = departmentRepository;
+        this.locationsRepository = locationsRepository;
     }
 
 
@@ -27,6 +39,15 @@ public class EmpleadosController {
 
         List<Empleados> lista = empleadosRepository.findAll();
         model.addAttribute("empleadosList", lista);
+
+        List<Department> listadepartamentos = departmentRepository.findAll();
+        model.addAttribute("listadepartamentos", listadepartamentos);
+
+        List<Locations> listaciudad = locationsRepository.findAll();
+        model.addAttribute("listaciudad", listaciudad);
+
+        List<Jobs> listajobs = jobsRepository.findAll();
+        model.addAttribute("listajobs", listajobs);
 
         return "empleados/list";
     }

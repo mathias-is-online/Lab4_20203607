@@ -1,10 +1,94 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <title>Lista Sedes</title>
 </head>
 <body>
 
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{'/empleados/list'}">Empleados</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Historial</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Reportes</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+
+
+<main>
+    <div class="container px-4 py-5">
+        <h1 class="pb-2 border-bottom">Lista Empleados</h1>
+
+        <form method="post" th:action="@{/empleados/buscarNombre}">
+            <input name="searchField" class="form-control mb-3" type="text" placeholder="Search"/>
+        </form>
+
+        <form method="post" th:action="@{/empleados/buscarApellido}">
+            <input name="searchField" class="form-control mb-3" type="text" placeholder="Search"/>
+        </form>
+
+
+        <table class="table">
+            <tr>
+                <th># de usuario</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Puesto</th>
+                <th>Departamento</th>
+                <th>Ciudad</th>
+                <th>Numero de telefono</th>
+                <th>Salario</th>
+
+                <th></th>
+            </tr>
+            <tr th:each="empleados, info : ${empleadosList}">
+                <td th:text="${info.index + 1}"></td>
+                <td th:text="${empleados.first_name}"></td>
+                <td th:text="${empleados.last_name}"></td>
+
+                <td th:each="job: ${listajobs}"
+                    th:text="${job.job_title}" th:value="${job.job_id}"
+                    th:selected="${job.job_id == empleados.job_id}"></td>
+
+                <td th:each="departments: ${listadepartamentos}"
+                th:text="${departments.department_name}" th:value="${departments.department_id}"
+                th:selected="${empleados.department_id == departments.department_id}"></td>
+
+                <td> City</td>
+
+                <td th:text="${empleados.phone_number}"></td>
+
+                <td th:text="${empleados.salary}"></td>
+
+
+
+
+                <td><a class="btn btn-primary" th:href="@{'/sedes/edit?id=' + ${sedes.idsede}}">Editar</a>
+                </td>
+
+            </tr>
+        </table>
+    </div>
+</main>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 </body>
 </html>

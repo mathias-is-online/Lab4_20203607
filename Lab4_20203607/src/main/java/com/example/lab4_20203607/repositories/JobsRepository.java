@@ -1,12 +1,8 @@
 package com.example.lab4_20203607.repositories;
 
 import com.example.lab4_20203607.entity.Empleados;
+import com.example.lab4_20203607.entity.Jobs;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
-import java.util.List;
-
-public interface EmpleadosRepository extends JpaRepository<Empleados, Integer> {
-
-
+public interface JobsRepository extends JpaRepository<Jobs, Integer> {
 }
